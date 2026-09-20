@@ -81,4 +81,4 @@ I favor **working code over explanation** and **iterative implementation over up
 
 ---
 
-<p align="center"><i>Open to discussing agentic RAG architectures, multi-agent systems, and distributed AI infrastructure.</i></p>
+<p align="center"><i>Open to discussing RAG architectures, multi-agent systems, and distributed AI infrastructure.</i></p>
