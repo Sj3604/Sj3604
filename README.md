@@ -27,21 +27,18 @@ I'm actively deepening my work in **Agentic AI** — moving beyond single-shot R
 
 ### 🚀 Featured Projects
 
-#### 🧠 Agentic Graph RAG System
-A local-first, agentic Graph RAG system built from scratch (Windows-native, no Docker/WSL) with a two-pipeline architecture — Data Pipeline → Memory Pipeline — feeding a **KuzuDB** knowledge graph.
-- Rewrote entity resolution with a three-tier strategy (in-batch matching, cross-document lookup, auto-registration)
-- Migrated knowledge graph storage from MongoDB to embedded KuzuDB with native Cypher queries
-- ~500x retrieval speedup via a cached NumPy embedding matrix and batched graph expansion
-- Built an MCP server + `smart_query` tool with dual-axis query classification and domain-specific agent routing
-- Audited and hardened a multi-modal NeMo Curator + nv-ingest production pipeline (PII redaction, OCR engine cleanup)
-- **Stack:** FastAPI, Celery/RabbitMQ, MongoDB Atlas, KuzuDB, spaCy, Qwen3, NeMo Curator, nv-ingest, PaddleOCR-VL
+#### 🎥 Video-to-Transcript RAG System
+A pipeline that takes a video URL, transcribes it into both Hindi and English using the **Sarvam AI** API (alongside other supporting APIs), and feeds the transcript into a RAG system — so users can ask natural-language questions about the video's content instead of watching it end-to-end. Built for meeting recall and fast video/content understanding.
+- Video URL → audio extraction → bilingual (Hindi/English) transcription via Sarvam AI
+- Transcript chunked and indexed into a RAG store for question-answering over the video's content
+- Designed around real use cases: meeting summaries and Q&A, general video comprehension
+- **Stack:** Sarvam AI (transcription), RAG/vector retrieval, LLM for Q&A
 
 #### 🤖 Multi-Agent Orchestrator *(active — agentic AI focus)*
 A standalone, ground-up rewrite of a multi-agent orchestration module for complex, autonomous task execution.
 - HTN/DAG-based task decomposition — breaking high-level goals into agent-executable subtasks
 - Parallel fan-out via LangGraph's `Send()` API for concurrent agent execution
 - Distributed execution with Celery and swappable checkpointers for stateful, resumable agent runs
-- Designed to closely interoperate with the Agentic Graph RAG system below, giving agents grounded, graph-based retrieval as a tool
 
 #### 🔍 Corrective & Self-RAG Implementations
 Built CRAG (Corrective RAG) and Self-RAG pipelines, each in both LangGraph-orchestrated and plain-Python control-flow versions.
@@ -59,21 +56,21 @@ Across these projects, I've worked hands-on with the full spectrum of modern RAG
 
 | Pattern | What it solves | Where I've built it |
 |---|---|---|
-| **Graph RAG** | Multi-hop reasoning over entity relationships | Agentic Graph RAG (KuzuDB), Multi-Strategy RAG (Neo4j) |
+| **Graph RAG** | Multi-hop reasoning over entity relationships | Multi-Strategy RAG (Neo4j) |
 | **Hybrid RAG** | Combining lexical + semantic recall | Multi-Strategy RAG (BM25 + dense + RRF) |
 | **Corrective RAG (CRAG)** | Self-correcting retrieval on low-confidence results | Standalone LangGraph implementation |
 | **Self-RAG** | Reflective, on-demand retrieval decisions | Standalone LangGraph implementation |
 | **Multi-Query RAG** | Query expansion for broader recall | Multi-Strategy RAG system |
-| **Agentic RAG** | Retrieval as a tool inside autonomous agent loops | Agentic Graph RAG's MCP `smart_query` layer |
+| **Transcript RAG** | Q&A grounded in transcribed audio/video content | Video-to-Transcript RAG System (Sarvam AI) |
 
 ---
 
 ### 🛠️ Tech Stack
 
 **Languages & Runtime:** Python · Windows 11 (native) / WSL2 when needed
-**AI/ML:** LangGraph · LangChain · spaCy · Qwen3 · Mistral · Groq
-**Data & Retrieval:** KuzuDB · Neo4j Aura · MongoDB Atlas · ChromaDB · BM25 + Dense Hybrid Search
-**Pipelines & Infra:** NeMo Curator · nv-ingest · PaddleOCR-VL · Celery · RabbitMQ · FastAPI
+**AI/ML:** LangGraph · LangChain · spaCy · Qwen3 · Mistral · Groq · Sarvam AI
+**Data & Retrieval:** Neo4j Aura · ChromaDB · BM25 + Dense Hybrid Search · Vector RAG stores
+**Pipelines & Infra:** Celery · RabbitMQ · FastAPI
 **Tooling:** `uv` for Python package management
 
 ---
